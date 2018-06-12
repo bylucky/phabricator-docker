@@ -30,9 +30,9 @@
 	chown 2000:2000 /data/docker/phabricator/repos
 
 ## 5. 设置phabricator的SSH访问端口（外网访问时所用）
-  #进入phabricator容器
+	# 进入phabricator容器
 	docker exec -it phabricator bash
-  #设置端口
+	# 设置端口
 	/srv/phabricator/phabricator/bin/config set diffusion.ssh-port 2222
   
 ----
