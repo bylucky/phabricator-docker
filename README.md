@@ -1,5 +1,5 @@
 # phabricator-docker
-基于Docker安装phabricator的教程，Redpointgames phabricator 的安装教程。
+（这是一个草稿，有时间再来完善）基于Docker安装phabricator的教程，Redpointgames phabricator 的安装教程。
 此教程安装的是Redpointgames phabricator，
 原库地址：
 https://hub.docker.com/r/redpointgames/phabricator/
@@ -13,7 +13,7 @@ https://hub.docker.com/r/redpointgames/phabricator/
 3. 安装并运行phabricator
 docker run \
     --name phabricator \
-    --rm -p 8080:80 -p 443:443 -p 222:22 \
+    --rm -p 8080:80 -p 443:443 -p 2222:22 \
     --link DBpha:mysql \
     --env PHABRICATOR_HOST=my.work.com \
     --env MYSQL_HOST=f2c7a41233a9 \
