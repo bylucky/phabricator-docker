@@ -1,5 +1,5 @@
 # phabricator-docker
-（这是一个草稿，有时间再来完善）基于Docker安装phabricator的教程，Redpointgames phabricator 的安装教程。
+基于Docker安装phabricator的教程，Redpointgames phabricator 的安装教程。
 此教程安装的是Redpointgames phabricator，
 原库地址：
 > https://hub.docker.com/r/redpointgames/phabricator/
