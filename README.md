@@ -30,7 +30,7 @@
 ##### 关键参数说明：
 	--link {Your mysql name}
 	--env PHABRICATOR_HOST={你的访问域名}
-	--env MYSQL_HOST={你的容器ID}
+	--env MYSQL_HOST={DBpha容器ID}
 	-v #容器中的目录文件映射到本地宿主机中
 	#其他参数如端口号、具体目录可以使用默认，或换成自己的。
 ## 4. 设置宿主机中用于存放Repositories的文件夹权限
