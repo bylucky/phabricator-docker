@@ -41,7 +41,27 @@
 	docker exec -it phabricator bash
 	# 设置端口
 	/srv/phabricator/phabricator/bin/config set diffusion.ssh-port 2222
-## 6. 配置宿主机的Nginx，让外网可以通过非80端口访问 phabricator Container
+
+## 6. 设置邮件服务
+	# 先进入phabricator容器的目录 /srv/phabricator/phabricator/
+	# 以下是以腾讯企业邮箱为例子，其它邮箱换成相应参数即可
+	sudo ./bin/config set metamta.default-address test@yourdomain.com
+	sudo ./bin/config set metamta.domain yourdomain.com
+	sudo ./bin/config set metamta.can-send-as-user false
+	sudo ./bin/config set metamta.mail-adapter PhabricatorMailImplementationPHPMailerAdapter
+	sudo ./bin/config set phpmailer.mailer smtp
+	sudo ./bin/config set phpmailer.smtp-host smtp.exmail.qq.com
+	sudo ./bin/config set phpmailer.smtp-port 465
+	sudo ./bin/config set phpmailer.smtp-user test@yourdomain.com
+	sudo ./bin/config set phpmailer.smtp-password {your mail password}
+	sudo ./bin/config set phpmailer.smtp-protocol SSL
+	
+	# 测试邮件
+	./bin/mail send-test --to 123123123@qq.com --subject hello <README.md
+	
+	# 如果你的邮件收不到邮件，则是没有配置成功，可以检查下  Config->Mail->metamta.mail-adapter 值是否配置正确。
+
+## 7. 配置宿主机的Nginx，让外网可以通过非80端口访问 phabricator Container
 	server {
 		listen  80;
 		server_name  your.domain.com;
@@ -54,11 +74,13 @@
 		    proxy_pass http://127.0.0.1:8080/;
 		}
 	}
-## 7. 如果你的域名 your.domain.com 只是个测试域名，你可以配置本地Hosts 进行访问
+## 8. 如果你的域名 your.domain.com 只是个测试域名，你可以配置本地Hosts 进行访问
 	#根据自己的需要换成宿主机的IP地址
 	192.168.000.000  your.domain.com
-**至此，您在浏览器输入 your.domain.com 便可以正常使用 phabricator 了，GIT及SVN等都可正常使用了。**
+
+
+**至此，您在浏览器输入 your.domain.com 便可以正常使用 phabricator 了，GIT及SVN等都可正常使用了。注意：最好先去 http://your.domain.com/auth/config/new/ 开启Username/Password 登录方式**
 ----
 # docker 常用命令
 ## 运行已经存在的容器
-	docker container start
+	docker container-id start
